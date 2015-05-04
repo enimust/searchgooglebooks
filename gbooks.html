@@ -1,0 +1,37 @@
+<head>
+  <title>Search Google Books</title>
+</head>
+
+<body>
+  <h1>Search Google books</h1>
+                                       
+  <form>
+     <input type="text" name="queryPhrase" 
+            placeholder="type a query">
+    <input type="submit" value="Search" id="searchButton">
+  </form>
+  <div>    
+    {{#if waitingForResults}}
+      {{> spinner}}       
+    {{/if}}
+    
+    {{#if total}}
+      <p class="info">Total number of found books: 
+         <span>{{total}}</span> for <span>{{phrase}}</span></p>
+    {{/if}}
+    
+    {{#if allResults}}
+      {{#each allResults}}
+       <div class="book">
+        <img src="{{imgUrl}}">
+        <p class="title">{{volumeInfo.title}} - by 
+               <span class="author">{{volumeInfo.authors}}</span>
+        </p>
+       </div>
+      {{/each}}
+    {{/if}}
+  </div>
+  
+</body>
+
+
